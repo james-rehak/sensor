@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance to serve temp sensor
+After=network.target
+
+[Service]
+User={user}
+Group=www-data
+WorkingDirectory=/home/{user}/sites/sensor
+Environment="PATH=/home/{user}/sites/sensor/sensorenv/bin"
+ExecStart=/home/{user}/sites/sensor/sensorenv/bin/gunicorn --workers 3 --bind unix:sensor.sock -m 007 wsgi:app
+
+[Install]
+WantedBy=multi-user.target
+
