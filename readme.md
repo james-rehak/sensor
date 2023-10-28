@@ -8,8 +8,8 @@ sudo apt install python3-venv
 ```
 While in sesnor directory containing app
 ```
-python -m venv myprojectenv
-source myprojectenv/bin/activate
+python -m venv env
+source env/bin/activate
 ```
 While in environment (sensorenv)
 ```
