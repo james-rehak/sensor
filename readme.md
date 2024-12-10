@@ -1,5 +1,5 @@
 ## Description
-Simple python server to push temperature and humidity data from a DHT22 Sensor attached to a Raspberry Pie Zero. 
+Simple python server to push temperature and humidity data from a DHT22 Sensor attached to a Raspberry Pie Zero.
 ## Configuration
 ```
 sudo apt update
@@ -8,7 +8,7 @@ sudo apt install python3-venv
 ```
 While in sesnor directory containing app
 ```
-python -m venv env
+python -m venv sensorenv
 source env/bin/activate
 ```
 While in environment (sensorenv)
@@ -31,13 +31,13 @@ sudo systemctl start sensor
 sudo systemctl enable sensor
 ```
 ### Configure Nginx
-add sensor nginx config to 
+add sensor nginx config to
 ```
 /etc/nginx/sites-available/sensor
 ```
 enable serverblock
 ```
-sudo ln -s /etc/nginx/sites-available/sensor /etc/nginx/sites-enabled 
+sudo ln -s /etc/nginx/sites-available/sensor /etc/nginx/sites-enabled
 sudo nginx -t
 sudo systemctl restart nginx
 ```
@@ -45,7 +45,7 @@ sudo systemctl restart nginx
 ### API Call
 `http://{internal_ip}/readings`
 
-Temperature reading in Celsius 
+Temperature reading in Celsius
 
 Expected Output:
 ```
@@ -55,4 +55,17 @@ Expected Output:
     "response": "success",
     "temperature": "21.6"
 }
+```
+
+### Errors
+If 502 Gateway Errors, Nginx cannot access sesnor.sock. Ensure enclosing directory has correct permissions.
+For example:
+```
+sudo chmod 755 /home/{user}
+```
+Nginx and service log locations:
+```
+tail -f /var/log/nginx/error.log
+sudo journalctl -u nginx
+sudo journalctl -u sensor
 ```
