@@ -14,7 +14,7 @@ source env/bin/activate
 While in environment (sensorenv)
 ```
 pip install wheel
-pip install gunicorn flask datetime Adafruit_DHT
+pip install gunicorn flask datetime board adafruit_dht
 ```
 to run:
 ```
