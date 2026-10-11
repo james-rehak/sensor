@@ -1,6 +1,10 @@
 ## Description
 Simple python server to push temperature and humidity data from a DHT22 Sensor attached to a Raspberry Pie Zero.
+## Requirements
+- DHT22 Sensor
+- Raspberry Pi Zero 
 ## Configuration
+Install Rasperry Pi OS Legacy (32-bit) Debian Bookworm Version 12
 ```
 sudo apt update
 sudo apt install nginx
@@ -9,7 +13,7 @@ sudo apt install python3-venv
 While in sesnor directory containing app
 ```
 python -m venv sensorenv
-source env/bin/activate
+source sensorenv/bin/activate
 ```
 While in environment (sensorenv)
 ```
